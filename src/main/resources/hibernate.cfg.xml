@@ -9,11 +9,11 @@
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.cj.jdbc.Driver
+            com.mysql.jdbc.Driver
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://b37c94ac24bea4:c2a32f99@us-cdbr-iron-east-01.cleardb.net/heroku_8a1ae2f5868ce62?reconnect=true
+            jdbc:mysql://us-cdbr-iron-east-01.cleardb.net:3306/heroku_8a1ae2f5868ce62?reconnect=true
         </property>
 
         <property name = "hibernate.connection.username">
