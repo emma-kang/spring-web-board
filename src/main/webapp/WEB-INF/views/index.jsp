@@ -6,6 +6,6 @@
 </head>
 
 <body>
-Hello
+Hello ${username}
 </body>
 </html>

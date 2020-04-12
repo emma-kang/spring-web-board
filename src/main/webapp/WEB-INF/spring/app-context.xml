@@ -20,6 +20,13 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="us-cdbr-iron-east-01.cleardb.net:3306" />
+        <property name="user" value="b37c94ac24bea4" />
+        <property name="password" value="c2a32f99" />
+    </bean>
+
 </beans>
 
 
