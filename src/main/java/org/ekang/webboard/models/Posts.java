@@ -1,13 +1,32 @@
 package org.ekang.webboard.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="posts")
 public class Posts {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy="increment")
+    @Column(name="postid")
     private int postid;
+
+    @Column(name="userid")
     private int userid;
+
+    @Column(name="postingdate")
     private Date postingDate;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="body")
     private String body;
+
+    public Posts() {}
 
     public int getPostid() {
         return postid;
@@ -47,5 +66,11 @@ public class Posts {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    @Override
+    public String toString() {
+        return "Post [id=" + postid + ", userid=" + userid
+                + ", postingDate=" + postingDate + ", title=" + title + ",body=" + body + "]";
     }
 }
