@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="dataSource" uuid="914addd1-064a-4870-a22a-c85239df3e32">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>c3p0
+
+/Users/yuseon/dev/springWebBoard/src/main/webapp/WEB-INF/spring/app-context.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>us-cdbr-iron-east-01.cleardb.net:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="f08250cd-c6fc-4c2d-9d22-7706e29833b7">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/yuseon/dev/springWebBoard/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://b37c94ac24bea4:c2a32f99@us-cdbr-iron-east-01.cleardb.net:3306/heroku_8a1ae2f5868ce62?reconnect=true</jdbc-url>
+    </data-source>
+  </component>
+</project>

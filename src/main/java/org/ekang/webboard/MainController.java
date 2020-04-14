@@ -1,55 +1,30 @@
 package org.ekang.webboard;
-
-import org.apache.logging.log4j.core.Logger;
-import org.apache.logging.log4j.spi.LoggerContextFactory;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.ekang.webboard.models.Users;
+import org.ekang.webboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.sql.DataSource;
-import java.sql.*;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private DataSource dataSource;
+    private UserService userService;
 
-    @RequestMapping("/")
-    public String Main() {
+    @Autowired(required=true)
+    @Qualifier(value="userService")
+    public void setUserService(UserService us) {
+        this.userService = us;
+    }
+
+    @RequestMapping(value="/users", method= RequestMethod.GET)
+    public String listUsers(Model model) {
+        model.addAttribute("users", new Users());
+        model.addAttribute("listUsers", this.userService.listUsers());
         return "index";
     }
 
-    @RequestMapping("/dbtest")
-    public String dbTest(Model model) {
-        Connection conn = null;
-        Statement st = null;
-
-        try {
-            conn = dataSource.getConnection();
-            st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT firstname FROM users where userid=1");
-
-            while(rs.next()) {
-                model.addAttribute("username", rs.getString(1));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if(st != null) st.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if(conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return "index";
-    }
 }
