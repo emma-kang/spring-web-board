@@ -2,20 +2,17 @@ package org.ekang.webboard.service;
 
 import org.ekang.webboard.dao.UsersDAO;
 import org.ekang.webboard.models.Users;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@EnableTransactionManagement
 public class UserServiceImpl implements UserService {
     private UsersDAO usersDAO;
 
-//    public UserServiceImpl(UsersDAO usersDAO) {
-//        this.usersDAO = usersDAO;
-//    }
     public void setUsersDAO(UsersDAO usersDAO) {
         this.usersDAO = usersDAO;
     }
