@@ -7,12 +7,6 @@
 </head>
 
 <body>
-<h3>user List</h3>
-<c:if test="${!empty listUsers}">
-        <c:forEach items="${listUsers}" var="user">
-                <li>${user.userid}</li>
-                <li>${user.username}</li>
-        </c:forEach>
-</c:if>
+Hello
 </body>
 </html>

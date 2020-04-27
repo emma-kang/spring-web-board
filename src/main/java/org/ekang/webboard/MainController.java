@@ -1,6 +1,7 @@
 package org.ekang.webboard;
 import org.ekang.webboard.models.Users;
 import org.ekang.webboard.service.UserService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,17 +15,21 @@ public class MainController {
 
     private UserService userService;
 
-    @Autowired(required=true)
-    @Qualifier(value="userService")
-    public void setUserService(UserService us) {
+    @Autowired
+    public void setUserService(@Qualifier("userService") UserService us){
         this.userService = us;
     }
 
-    @RequestMapping(value="/users", method= RequestMethod.GET)
-    public String listUsers(Model model) {
-        model.addAttribute("users", new Users());
-        model.addAttribute("listUsers", this.userService.listUsers());
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String mainPage(){
         return "index";
+    }
+
+    @RequestMapping(value="/users", method=RequestMethod.GET)
+    public String listUsers(Model model) {
+        model.addAttribute("user", new Users());
+        model.addAttribute("listUsers", this.userService.listUsers());
+        return "userList";
     }
 
 }
