@@ -61,6 +61,12 @@
     <bean id="userService" class="org.ekang.webboard.service.UserServiceImpl">
         <property name="usersDAO" ref="usersDAO"></property>
     </bean>
+    <bean id="postsDAO" class="org.ekang.webboard.dao.PostsDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="postService" class="org.ekang.webboard.service.PostServiceImpl">
+        <property name="postDAO" ref="postsDAO"></property>
+    </bean>
 
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
