@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring web-board</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+    <link name="stylesheet" type="text/css" rel="stylesheet" media="all" href="../../../resources/static/css/main.css"
+          th:href="@{/resources/static/css/main.css}"/>
+</head>
+<body>
+<div>
+    <h1>Spring Web Board with Thymeleaf</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Created by</th>
+            <th scope="col">Posting Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <th scope="row" th:text="${post.postid}"></th>
+                <td th:text="${post.title}"></td>
+                <td th:text="${post.user}"></td>
+                <th th:text="${post.postingDate}"></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
