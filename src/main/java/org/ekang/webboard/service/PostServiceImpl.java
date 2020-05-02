@@ -3,11 +3,13 @@ package org.ekang.webboard.service;
 import org.ekang.webboard.dao.PostsDAO;
 import org.ekang.webboard.models.Posts;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@EnableTransactionManagement
 public class PostServiceImpl implements PostService{
 
     private PostsDAO postsDAO;

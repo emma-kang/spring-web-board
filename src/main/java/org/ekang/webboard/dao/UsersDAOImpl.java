@@ -61,4 +61,17 @@ public class UsersDAOImpl implements UsersDAO {
         logger.info("User deleted successfully :" + u);
     }
 
+    @Override
+    public Integer getUserIdByName(String username) {
+        List<Users> users = this.listUsers();
+        Integer userid = null;
+
+        for (Users user : users) {
+            if(user.getUsername().equals(username))
+                userid = user.getUserid();
+        }
+
+        return userid;
+    }
+
 }
