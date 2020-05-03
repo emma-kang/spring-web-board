@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Integer getUserIdByName(String name) {
-        return this.usersDAO.getUserIdByName(name);
+    public Users getUserByName(String name) {
+        return this.usersDAO.getUserByName(name);
     }
 
 }

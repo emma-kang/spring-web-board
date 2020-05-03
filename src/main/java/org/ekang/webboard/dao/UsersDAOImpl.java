@@ -62,16 +62,16 @@ public class UsersDAOImpl implements UsersDAO {
     }
 
     @Override
-    public Integer getUserIdByName(String username) {
+    public Users getUserByName(String username) {
         List<Users> users = this.listUsers();
-        Integer userid = null;
 
         for (Users user : users) {
             if(user.getUsername().equals(username))
-                userid = user.getUserid();
+                return user;
+
         }
 
-        return userid;
+        return null;
     }
 
 }
