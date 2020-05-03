@@ -12,6 +12,9 @@
           th:href="@{/resources/static/css/main.css}"/>
 </head>
 <body>
+    <div class="error-msg">
+        <span th:text="${errorMsg}"></span>
+    </div>
     <div class="form-container">
         <form action="/writepost" th:action="@{/writepost}" th:object="${postDTO}" method="post" >
             <div class="form-header">
