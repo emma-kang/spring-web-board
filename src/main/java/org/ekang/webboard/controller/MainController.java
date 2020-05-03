@@ -1,4 +1,5 @@
 package org.ekang.webboard.controller;
+import org.ekang.webboard.dto.PostDTO;
 import org.ekang.webboard.service.PostService;
 import org.ekang.webboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/writepost", method = RequestMethod.GET)
-    public String writePostPage() {
+    public String writePostPage(Model model) {
+        model.addAttribute("postDTO", new PostDTO());
         return "thymeleaf/writePost";
     }
 
