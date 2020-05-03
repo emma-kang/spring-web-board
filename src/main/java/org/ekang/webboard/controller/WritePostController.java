@@ -9,19 +9,21 @@ import org.ekang.webboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class WritePostController {
     private PostDTO postDTO;
     private PostService postService;
     private UserService userService;
+    private String errorMsg = null;
 
     @Autowired
     public void setUserService(@Qualifier("userService") UserService us) { this.userService = us; }
@@ -29,37 +31,32 @@ public class WritePostController {
     @Autowired
     public void setPostService(@Qualifier("postService") PostService ps) { this.postService = ps; }
 
-    @RequestMapping(value = "/writepost", params = {"newpost"})
-    public String writeNewPost(final PostDTO postDTO, final BindingResult bindingResult, final ModelMap model) {
+    @RequestMapping(value = "/writepost", method = RequestMethod.POST)
+    public String writeNewPost(@ModelAttribute final PostDTO postDTO, Model model) {
         this.postDTO = postDTO;
-        createNewPost();
+        Integer userid = getUserIdByName(postDTO.getUsername(), postDTO.getPasswords());
+
+        if(userid == null){
+            userid = createNewUsers(postDTO.getUsername(), postDTO.getPasswords());
+        }
+
+        if (errorMsg != null) {
+            model.addAttribute("errorMsg", errorMsg);
+            return "thymeleaf/writePost";
+        }
+
+        createNewPost(userid);
 
         return "redirect:/";
     }
 
-    private void createNewPost() {
-        String username = postDTO.getUsername();
-        String passwords = postDTO.getPasswords();
-        String title = postDTO.getTitle();
-        String postbody = postDTO.getPostbody();
-
-        System.out.println(username + " " + passwords + " " + title + " " + postbody);
-
+    private void createNewPost(Integer userid) {
         Posts post = new Posts();
 
-        Integer userid = getUserIdByName(username);
-        // if there's no same username in the database, create new user
-        if(userid == null){
-            userid = createNewUsers(username, passwords);
-        }
-
-        Date today = Calendar.getInstance().getTime();
-        System.out.println(today);
-
         post.setUserid(userid);
-        post.setTitle(title);
-        post.setBody(postbody);
-        post.setPostingDate(today);
+        post.setTitle(postDTO.getTitle());
+        post.setBody(postDTO.getPostbody());
+        post.setPostingDate(Calendar.getInstance().getTime());
 
         this.postService.addPost(post);
 
@@ -76,8 +73,18 @@ public class WritePostController {
         return newUser.getUserid();
     }
 
-    private Integer getUserIdByName(String username) {
-        return this.userService.getUserIdByName(username);
+    private Integer getUserIdByName(String username, String password) {
+        Users existUser = this.userService.getUserByName(username);
+        Integer userId = null;
+
+        if(existUser != null){
+            userId = existUser.getUserid();
+            if(!existUser.getPasswords().equals(password)) {
+                errorMsg = "Passwords not match";
+            }
+        }
+
+        return userId;
     }
 
 }
