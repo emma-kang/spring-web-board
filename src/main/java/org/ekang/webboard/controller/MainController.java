@@ -1,5 +1,4 @@
 package org.ekang.webboard.controller;
-import org.ekang.webboard.dto.PostDTO;
 import org.ekang.webboard.service.PostService;
 import org.ekang.webboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.HashMap;
 
 
 @Controller
@@ -31,12 +27,6 @@ public class MainController {
     public String mainPage(Model model) {
         model.addAttribute("listPost", this.postService.listPosts());
         return "thymeleaf/main";
-    }
-
-    @RequestMapping(value = "/writepost", method = RequestMethod.GET)
-    public String writePostPage(Model model) {
-        model.addAttribute("postDTO", new PostDTO());
-        return "thymeleaf/writePost";
     }
 
 }
