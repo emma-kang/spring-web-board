@@ -5,6 +5,7 @@ public class PostDTO {
     private String passwords;
     private String title;
     private String postbody;
+    private String errMsg;
 
     public String getUsername() {
         return username;
@@ -36,6 +37,14 @@ public class PostDTO {
 
     public void setPostbody(String postbody) {
         this.postbody = postbody;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     @Override
