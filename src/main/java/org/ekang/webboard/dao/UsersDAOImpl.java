@@ -61,4 +61,17 @@ public class UsersDAOImpl implements UsersDAO {
         logger.info("User deleted successfully :" + u);
     }
 
+    @Override
+    public Users getUserByName(String username) {
+        List<Users> users = this.listUsers();
+
+        for (Users user : users) {
+            if(user.getUsername().equals(username))
+                return user;
+
+        }
+
+        return null;
+    }
+
 }

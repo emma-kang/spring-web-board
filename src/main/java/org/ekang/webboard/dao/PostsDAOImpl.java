@@ -62,5 +62,16 @@ public class PostsDAOImpl implements PostsDAO{
         logger.info("User deleted successfully :" + p);
     }
 
+    public List<Posts> getPostsByUserId(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        String sql = "from Posts p inner join Users u where u.userid = :userid";
+        List<Posts> postList = session.createQuery(sql).setParameter("userid", id).list();
+        for (Posts p : postList) {
+            logger.info("Post List by user " + id + ": " + p);
+        }
+
+        return postList;
+    }
+
 
 }

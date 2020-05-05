@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
         this.usersDAO.removeUser(id);
     }
 
+    @Override
+    @Transactional
+    public Users getUserByName(String name) {
+        return this.usersDAO.getUserByName(name);
+    }
+
 }
