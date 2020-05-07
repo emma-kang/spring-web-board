@@ -48,6 +48,7 @@ h1 {
 #title {
     width: 90%;
 }
+
 .form-usrinfo {
     display: flex;
     flex-direction: row;
@@ -60,14 +61,32 @@ h1 {
     height: 50vh;
     margin: 40px 0;
 }
-/*body {*/
-/*    height: 100vh;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 0 150px 0 150px;*/
-/*}*/
 
-/*tr {*/
-/*    text-align: center;*/
-/*}*/
+. webboard-btn-group {
+    padding-bottom: 10px;
+}
+
+.detail-main {
+    background-color: #CCDBDA;
+    height: 70vh;
+    padding: 10px 0;
+}
+
+.usr-info {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.usr-info p {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.detail-body {
+    text-align: justify;
+    padding: 0 10px;
+}
+
+.detail-footer {
+    margin: 10px 0;
+}

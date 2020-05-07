@@ -14,29 +14,28 @@
 <body>
 <div class="container">
     <h1>Spring Web Board with Thymeleaf</h1>
-<!--    <div class="row"><input type="text" placeholder="search by" /></div>-->
+    <div class="row webboard-btn-group">
+        <a href="/writepost" target="_blank"><button type="button" class="btn btn-dark">Add New Post</button></a>
+    </div>
     <div class="row webboard-table">
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Created by</th>
                 <th scope="col">Posting Date</th>
+                <th scope="col">Details</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="post : ${listPost}">
                 <th scope="row" th:text="${post.postid}"></th>
                 <td th:text="${post.title}"></td>
-                <td th:text="${post.userid}"></td>
-                <th th:text="${post.postingDate}"></th>
+                <td th:text="${post.postingDate}"></td>
+                <td><a type="button" th:href="@{/details/{id}(id=${post.postid})}">View</a></td>
             </tr>
             </tbody>
         </table>
-    </div>
-    <div class="row webboard-btn-group">
-        <a href="/writepost" target="_blank"><button type="button" class="btn btn-dark">Add New Post</button></a>
     </div>
 </div>
 </body>
