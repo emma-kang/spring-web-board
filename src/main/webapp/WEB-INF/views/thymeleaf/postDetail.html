@@ -12,6 +12,27 @@
           th:href="@{/resources/static/css/main.css}"/>
 </head>
 <body>
-<h1 th:text="${greeting}"></h1>
+<div class="container">
+    <div class="detail-main">
+        <div th:object="${postDTO}">
+            <h1 th:text="${postDTO.title}"></h1>
+            <hr>
+            <div class="usr-info">
+                <p th:text="${postDTO.username}"></p>
+                <p th:text="${postDTO.createDate}"></p>
+            </div>
+            <div class="detail-body">
+                <p class="detail-body" th:text="${postDTO.postbody}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="detail-footer">
+        <button class="btn btn-info">Edit</button>
+        <button class="btn btn-danger">Delete</button>
+    </div>
+
+
+</div>
+
 </body>
 </html>
