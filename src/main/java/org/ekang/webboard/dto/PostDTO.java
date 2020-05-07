@@ -6,6 +6,7 @@ public class PostDTO {
     private String title;
     private String postbody;
     private String errMsg;
+    private String createDate;
 
     public String getUsername() {
         return username;
@@ -47,9 +48,17 @@ public class PostDTO {
         this.errMsg = errMsg;
     }
 
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public String toString() {
-        return "PostDTO [username=" + username + ", passwords=" + passwords
-                + ", title=" + title + ",+ postbody=" + postbody + "]";
+        return "PostDTO [username=" + username + ", passwords=" + passwords +
+                ", createDate=" + createDate + ", title=" + title + ",+ postbody=" + postbody + "]";
     }
 }
