@@ -27,12 +27,9 @@
         </div>
     </div>
     <div class="detail-footer">
-        <button class="btn btn-info">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+        <a th:href="@{/details/edit/{id}(id=${postid})}" class="btn btn-primary" role="button">Edit</a>
+        <a th:href="@{/details/delete/{id}(id=${postid})}" class="btn btn-danger" role="button">Delete</a>
     </div>
-
-
 </div>
-
 </body>
 </html>
