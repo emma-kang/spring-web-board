@@ -12,17 +12,16 @@
           th:href="@{/resources/static/css/main.css}"/>
 </head>
 <body>
-
     <div class="form-container">
         <span th:if="${errorMsg}" th:text="${errorMsg}" style="color: red;"></span>
         <form th:action="@{/details/{id}(id=${target})}" th:object="${postDTO}" method="post" >
             <div class="form-header">
                 <div class="form-usrinfo">
-                    UserName: <input type="text" id="usrname" th:field="*{username}" />
-                    Password: <input type="password" id="usrpw" th:field="*{passwords}" />
+                    <input type="text" id="usrname" th:field="*{username}" placeholder="UserName"/>
+                    <input type="password" id="usrpw" th:field="*{passwords}" placeholder="Passwords"/>
                 </div>
                 <div class="form-title">
-                    Title: <input type="text" id="title" th:field="*{title}" />
+                    <input type="text" id="title" th:field="*{title}" placeholder="Title" />
                 </div>
             </div>
             <div class="form-body">
