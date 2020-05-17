@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Calendar;
+
 @Controller
 public class PostDetailController {
     private PostService postService;
@@ -45,7 +47,7 @@ public class PostDetailController {
         return "thymeleaf/editPost";
     }
 
-    @RequestMapping(value= "/details/edit/{id}", method = RequestMethod.POST) // need to fix
+    @RequestMapping(value= "/details/edit/{id}", method = RequestMethod.POST)
     public String submitEditPost(@PathVariable("id") int id, @ModelAttribute final PostDTO postDTO, final BindingResult bindingResult, final ModelMap model) {
         PostDTO targetPost = postDTO;
         if(!isValidPasswords(targetPost.getPasswords(), targetPost.getUsername())){
@@ -68,10 +70,12 @@ public class PostDetailController {
         post.setTitle(targetPost.getTitle());
         post.setBody(targetPost.getPostbody());
         post.setUserid(user.getUserid());
+        post.setPostingDate(Calendar.getInstance().getTime());
         this.postService.updatePost(post);
     }
 
     private boolean isValidPasswords(String passwords, String username) {
+        System.out.println("Finding passwords for user : " + username);
         Users user = this.userService.getUserByName(username);
         boolean retValue = false;
 

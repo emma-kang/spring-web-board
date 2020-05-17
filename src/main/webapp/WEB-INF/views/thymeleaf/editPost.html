@@ -14,7 +14,7 @@
 <body>
     <div class="form-container">
         <span th:if="${errorMsg}" th:text="${errorMsg}" style="color: red;"></span>
-        <form th:action="@{/details/{id}(id=${target})}" th:object="${postDTO}" method="post" >
+        <form th:action="@{/details/edit/{id}(id=${target})}" th:object="${postDTO}" method="post" >
             <div class="form-header">
                 <div class="form-usrinfo">
                     <input type="text" id="usrname" th:field="*{username}" placeholder="UserName"/>
